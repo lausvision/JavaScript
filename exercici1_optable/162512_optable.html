@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabla de operadores</title>
+
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      table td, table th {
+        border: 1px solid black;
+        padding: .2em .4em;
+      }
+      table td:nth-child(2) {
+        text-align: right;
+      }
+      
+    </style>
+
+  </head>
+  <body>
+    <form>
+      <p>
+        <label>
+          Operando 1
+          <input type="number" name="op1" value="0" />
+        </label>
+      </p>
+      <p>
+        <label>
+          Operando 2
+          <input type="number" name="op2" value="0" />
+        </label>
+      </p>
+      <button>Compute</button>
+    </form>
+    <main>
+      <table></table>
+    </main>
+    <script>
+      let form = document.forms[0];
+      let op1 = document.querySelector('input[name="op1"]');
+      let op2 = document.querySelector('input[name="op2"]');
+      let table = document.querySelector("main table");
+
+      const removeChildren = element => {
+        while (element.firstElementChild) {
+          element.firstElementChild.remove();
+        }
+      };
+
+      // TODO: función addRow que añade una fila a la tabla 
+      //  a partir del contenido de las dos casillas
+
+      // TODO(hard): Hacer una tabla de operadores y funciones
+      //  que permita generar la tabla con un bucle
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        let val1 = Number(op1.value);
+        let val2 = Number(op2.value);
+
+        removeChildren(table);
+
+        let tr = document.createElement('tr');
+        tr.innerHTML = "<th>Operación</th><th>Resultado</th>";
+        table.appendChild(tr);
+
+        tr = document.createElement("tr");
+        tr.innerHTML = `<td>${val1} + ${val2}</td><td>${val1 + val2}</td>`;
+        table.appendChild(tr);
+
+        tr = document.createElement("tr");
+        tr.innerHTML = `<td>${val1} * ${val2}</td><td>${val1 * val2}</td>`;
+        table.appendChild(tr);
+
+      });
+    </script>
+  </body>
+</html>
