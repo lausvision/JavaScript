@@ -36,7 +36,12 @@
       <button>Compute</button>
     </form>
     <main>
-      <table></table>
+      <table>
+        <tr>
+          <th>Expression</th>
+          <th>Result</th>
+        </tr>
+      </table>
     </main>
     <script>
       let form = document.forms[0];
@@ -53,6 +58,13 @@
       // TODO: función addRow que añade una fila a la tabla 
       //  a partir del contenido de las dos casillas
 
+      let addRow = function (a,b,elem="td") {
+       const header = document.createElement("tr");
+       header.innerHTML=`<${elem}$>${a}</${elem}`;
+       header.innerHTML+=`<${elem}$>${b}</${elem}`;
+       table.appendChild(header);
+      }
+
       // TODO(hard): Hacer una tabla de operadores y funciones
       //  que permita generar la tabla con un bucle
 
@@ -67,11 +79,11 @@
         tr.innerHTML = "<th>Operación</th><th>Resultado</th>";
         table.appendChild(tr);
 
-        tr = document.createElement("tr");
+        addRow(val1,val2);
         tr.innerHTML = `<td>${val1} + ${val2}</td><td>${val1 + val2}</td>`;
         table.appendChild(tr);
 
-        tr = document.createElement("tr");
+        addRow();
         tr.innerHTML = `<td>${val1} * ${val2}</td><td>${val1 * val2}</td>`;
         table.appendChild(tr);
 
